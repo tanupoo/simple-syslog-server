@@ -56,7 +56,7 @@ if opt.log_file:
                                            datefmt=LOG_DATEFMT))
     logger.addHandler(handler)
 
-if opt.debug:
+if opt.debug or not opt.log_file:
     handler = logging.StreamHandler()
     handler.setLevel(logging.DEBUG)
     handler.setFormatter(logging.Formatter(LOG_FORMAT,
