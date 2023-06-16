@@ -77,9 +77,8 @@ class HTTPRequestsHandler(logging.Handler):
             return False
         else:
             if ret.ok:
-                print("OK", ret.ok)
                 return True
             else:
-                print("NG", ret.ok)
+                print("ERROR:", ret.status_code)
                 return False
 
