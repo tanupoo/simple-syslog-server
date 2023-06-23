@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from socketserver import UDPServer, DatagramRequestHandler
 import logging
 import re
