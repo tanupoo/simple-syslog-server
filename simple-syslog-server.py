@@ -19,6 +19,9 @@ ap.add_argument("--file-handler", "-f", action="store", dest="log_file",
 ap.add_argument("--http-handler", "-H", action="store", dest="log_url",
                 help="enable HTTP handler "
                 "and specify the url to sent the message.")
+ap.add_argument("--read-bytes", "-n", action="store", dest="nb_read_bytes",
+                type=int, default=512,
+                help="specify a number to be read.")
 ap.add_argument("-d", action="store_true", dest="debug",
                 help="enable debug mode.")
 opt = ap.parse_args()
@@ -49,7 +52,7 @@ class SyslogUDPHandler(DatagramRequestHandler):
     def handle(self):
         client_addr, client_port = self.client_address
         while True:
-            buf = self.rfile.read(512)
+            buf = self.rfile.read(opt.nb_read_bytes)
             if len(buf) == 0:
                 break
             buf = buf.decode(encoding="utf-8", errors=opt.decode_policy)
